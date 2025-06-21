@@ -18,13 +18,7 @@ int soilsensor(int analog_pin) {
     return analogRead(analog_pin);
 }
 
-void setup() {
-    Serial.begin(9600);
-    Serial.print("--- Main Initiating ---");
-
-    pinMode(LED_PIN, OUTPUT);
-    digitalWrite(LED_PIN, LOW);
-
+void startrgbsensor(){
     if (tcs.begin()) {
         Serial.println("Found TCS34725 sensor");
         tcs.setInterrupt(true);  // Turn off LED until needed
@@ -34,13 +28,7 @@ void setup() {
     }
 }
 
-void loop() {
-    digitalWrite(LED_PIN, HIGH);  // Turn on the LED for consistent lighting
-    delay(500);  // Allow the LED to stabilize
-
-    uint16_t r, g, b, c;
-    tcs.getRawData(&r, &g, &b, &c);
-
+void rgbcolorprint(r, g, b, c) {
     // Normalize the color values
     float sum = (float)c;
     float red   = r / sum;
@@ -52,11 +40,6 @@ void loop() {
     Serial.print(" B: "); Serial.print(b);
     Serial.print(" C: "); Serial.println(c);
 
-    uint16_t colorTemp = tcs.calculateColorTemperature(r, g, b);
-    uint16_t lux       = tcs.calculateLux(r, g, b);
-    Serial.print("Color Temp: "); Serial.print(colorTemp); Serial.print(" K - ");
-    Serial.print("Lux: "); Serial.println(lux);
-
     // Determine the dominant color
     if (red > green && red > blue) {
         Serial.println("Detected Color: RED");
@@ -67,7 +50,40 @@ void loop() {
     } else {
         Serial.println("Detected Color: UNKNOWN");
     }
-
-    digitalWrite(LED_PIN, LOW);  // Turn off the LED after reading
-    delay(2000);  // Wait before the next reading
+    uint16_t colorTemp = tcs.calculateColorTemperature(r, g, b);
+    uint16_t lux       = tcs.calculateLux(r, g, b);
+    Serial.print("Color Temp: "); Serial.print(colorTemp); Serial.print(" K - ");
+    Serial.print("Lux: "); Serial.println(lux);
 }
+
+void setup() {
+    Serial.begin(9600);
+    Serial.print("--- Main Initiating ---");
+
+    // Start LED on RGB sensor
+    pinMode(LED_PIN, OUTPUT);
+    digitalWrite(LED_PIN, LOW);
+
+    // Start RGB sensor
+    startrgbsensor();
+}
+
+void loop() {
+    // LED on RGB sensor HIGH
+    digitalWrite(LED_PIN, HIGH);    // Turn on the LED for consistent lighting
+    delay(500);                     // Allow the LED to stabilize
+
+    // Start printing color output/lux of RGB sensor
+    uint16_t r, g, b, c;
+    tcs.getRawData(&r, &g, &b, &c);
+    rgbcolorprint(r, g, b, c);
+    
+    digitalWrite(LED_PIN, LOW);     // Turn off the LED after reading
+    delay(2000);                    // Wait before the next reading
+}
+
+
+
+
+
+
