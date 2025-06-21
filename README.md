@@ -1,14 +1,14 @@
 🌱 Superposition: Intelligent Plant Monitoring System
 
 **Superposition** is a hardware and software project created by a startup passionate about sustainability, precision agriculture, and smart ecosystems. 
-Our mission is to empower anyone—from home gardeners to commercial growers—with accurate, real-time environmental data to better care for plants.
+Our mission is to empower anyone, from home gardeners to commercial growers. With accurate, real-time environmental data to better care for plants.
 
--- What We're Building
+# What We're Building
 
 At its core, **Superposition** is a smart monitoring system that gathers real-world data from plants and their environment through a dedicated hardware device.
 This device tracks key environmental factors and sends the data to a mobile/web application for intuitive visualization and insights.
 
---- Hardware Features
+# Hardware Features
 
 Our first-generation hardware unit is designed to measure:
 
@@ -24,7 +24,7 @@ Future versions will include:
 - Soil Quality analyzer
 - And more...
 
-Software & App
+# Software & App
 
 We're developing a cross-platform mobile/web application that:
 - Seamlessly connects with the Superposition hardware.
@@ -33,15 +33,15 @@ We're developing a cross-platform mobile/web application that:
 
 Tech Stack (Planned/Under Development)
 
-### Hardware
+# Hardware
 - Arduino/CircuitPython-based microcontrollers
 - Analog and digital environmental sensors
 - Wi-Fi/Bluetooth connectivity
 
-### Software
+# Software
 
 
-## 💡 Why "Superposition"?
+# 💡 Why "Superposition"?
 
 Inspired by the idea that plants, like particles, thrive in delicate balance, "Superposition" captures our mission to observe and influence multiple plant conditions at once—creating harmony from complexity.
 
