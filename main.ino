@@ -81,7 +81,8 @@ void loop() {
     
 
     digitalWrite(LED_PIN, LOW);     // Turn off the LED after reading
-    delay(500);                    // Wait before the next reading
+    delay(500);                     // Wait before the next reading
 }
+
 
 
