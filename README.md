@@ -31,14 +31,14 @@ We're developing a cross-platform mobile/web application that:
 - Displays real-time environmental data in an intuitive dashboard.
 - Uses AI (planned) to provide personalized care suggestions, watering schedules, and alert systems.
 
-Tech Stack (Planned/Under Development)
+#Tech Stack (Planned/Under Development)
 
-# Hardware
+Hardware
 - Arduino/CircuitPython-based microcontrollers
 - Analog and digital environmental sensors
 - Wi-Fi/Bluetooth connectivity
 
-# Software
+Software
 
 
 # 💡 Why "Superposition"?
