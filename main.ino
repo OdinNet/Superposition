@@ -4,8 +4,17 @@
 // ###########################################
 
 // Constants #################################
+// RGB/LED
+const unit8_t LED_PIN = 9;
+
+// Soil
 const int SOIL_PIN = A1; 
-const int LED_PIN = 9;
+const uint16_t maxMoistValue = 1023;        // [!] Change in testing
+const uint16_t minMoistValue = 0;           // [!] Change in testing
+
+// Wettness
+const uint16_t maxSoaknessLevel = 225;      // [!] Change in testing
+
 // ###########################################
 
 // Objects ###################################
@@ -13,8 +22,28 @@ const int LED_PIN = 9;
 Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_614MS, TCS34725_GAIN_1X);
 // ###########################################
 
+int invertValue(int value) {
+    int unfilteredValue = value - maxMoistValue; 
+    if ( unfilteredValue == 0 ) {
+        return unfilteredValue;
+    }   
+    return (unfilteredValue * -1);
+}
+
 int read_soilsensor(int analog_pin) {
-    return analogRead(analog_pin);
+    return invertValue(analogRead(analog_pin));
+}
+
+// [!] Hanging
+void soaknessLevel(int soil_value) {
+    // Super Soaked Level 
+    if ( soil_value >= maxSoaknessLevel ) {
+        Serial.println("Soil Sensor Reading: SUPER SOAKED!"); 
+    } else if ( soil_value <= 0 ) {
+        Serial.println("Soil Sensor Reading: SUPER DRY"); 
+    } else {
+        Serial.println("N/A case in soaknessLevel()");
+    }
 }
 
 void start_rgbsensor() {
@@ -23,7 +52,7 @@ void start_rgbsensor() {
         tcs.setInterrupt(true);  // Turn off LED until needed
     } else {
         Serial.println("No TCS34725 found ... check your connections");
-        while (1); // Halt if sensor is not found
+        while (1); // Halt if sensor is not found               [!] Infinite Loop
     }
 }
 
@@ -77,8 +106,7 @@ void loop() {
     // Start printing color output/lux of RGB sensor
     uint16_t r, g, b, c;
     tcs.getRawData(&r, &g, &b, &c);
-    print_rgbcolor(r, g, b, c);
-    
+    print_rgbcolor(r, g, b, c);    
 
     digitalWrite(LED_PIN, LOW);     // Turn off the LED after reading
     delay(500);                     // Wait before the next reading
