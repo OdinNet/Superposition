@@ -1,5 +1,7 @@
 🌱 Superposition: Intelligent Plant Monitoring System
 
+https://devpost.com/software/superposition-fxyim9
+
 **Superposition** is a hardware and software project created by a startup passionate about sustainability, precision agriculture, and smart ecosystems. 
 Our mission is to empower anyone, from home gardeners to commercial growers. With accurate, real-time environmental data to better care for plants.
 
