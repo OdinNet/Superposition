@@ -40,9 +40,6 @@ Hardware
 - Analog and digital environmental sensors
 - Wi-Fi/Bluetooth connectivity
 
-Software
-
-
 # 💡 Why "Superposition"?
 
 Inspired by the idea that plants, like particles, thrive in delicate balance, "Superposition" captures our mission to observe and influence multiple plant conditions at once—creating harmony from complexity.
