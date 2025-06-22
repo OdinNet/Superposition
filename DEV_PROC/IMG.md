@@ -1,1 +1,1 @@
-![Example image](IMG_6819.HEIC)
+![Example image](image0.jpeg)
